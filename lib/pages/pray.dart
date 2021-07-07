@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'others/prayData.dart';
+import 'dart:math';
 
 class SignPoemForm {
   var poemID; //ID
@@ -45,14 +46,16 @@ class SignPoemForm {
     fame = signPoem[index][10];
     webLink = signPoem[index][11];
   }
-
 }
 
-SignPoemForm poemObject = SignPoemForm.formIndex(0);
+
+
 
 class PrayScaffold extends StatelessWidget {
   final title;
+  final Random random = Random();
   PrayScaffold({Key? key, this.title}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +63,8 @@ class PrayScaffold extends StatelessWidget {
         MediaQuery.of(context).size.height > MediaQuery.of(context).size.width
             ? MediaQuery.of(context).size.width
             : MediaQuery.of(context).size.height;
+
+    int poemIndex = random.nextInt(125);
 
     return Scaffold(
       appBar: AppBar(
@@ -75,7 +80,10 @@ class PrayScaffold extends StatelessWidget {
                 fontSize: 20,
               ),
             ),
-            PoemWidget(poemSize: poemSize),
+            PoemWidget(
+              poemSize: poemSize,
+              poemIndex: poemIndex,
+            ),
           ],
         ),
       ),
@@ -84,16 +92,18 @@ class PrayScaffold extends StatelessWidget {
 }
 
 class PoemWidget extends StatelessWidget {
-  const PoemWidget({
-    Key? key,
-    required this.poemSize,
-  }) : super(key: key);
 
+  PoemWidget({Key? key, required this.poemSize, required this.poemIndex}) : super(key: key);
+
+  final int poemIndex;
   final double poemSize;
   final Color poemColor = Colors.red;
 
+
   @override
   Widget build(BuildContext context) {
+    SignPoemForm poemObject = SignPoemForm.formIndex(poemIndex);
+    //SignPoemForm poemObject = SignPoemForm.formIndex(76); //Test only
     return Container(
       margin: EdgeInsets.all(10),
       width: poemSize,
@@ -135,7 +145,13 @@ class PoemWidget extends StatelessWidget {
                     constraints: BoxConstraints(
                         minHeight: double.infinity, minWidth: double.infinity),
                     child: Center(
-                      child: Text('123'),
+                      child: Text(
+                        '第'+ poemObject.poemID.toString() +'籤',
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -171,8 +187,22 @@ class PoemWidget extends StatelessWidget {
                     color: Colors.white,
                     constraints: BoxConstraints(
                         minHeight: double.infinity, minWidth: double.infinity),
+                    padding: EdgeInsets.all(5),  //內部文字跟邊邊留距離
                     child: Center(
-                      child: Text('123'),
+                      child: FittedBox(
+                        child: Row(
+                          children: [
+                            SizedBox(width: 10,),
+                            Text(
+                              poemObject.signPoemArticle,
+                              style: TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -207,7 +237,14 @@ class PoemWidget extends StatelessWidget {
                     constraints: BoxConstraints(
                         minHeight: double.infinity, minWidth: double.infinity),
                     child: Center(
-                      child: Text('123'),
+                      child: FittedBox(
+                        child: Text(
+                          poemObject.job,
+                          style: TextStyle(
+                              fontSize: 18,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -235,7 +272,14 @@ class PoemWidget extends StatelessWidget {
                     constraints: BoxConstraints(
                         minHeight: double.infinity, minWidth: double.infinity),
                     child: Center(
-                      child: Text('123'),
+                      child: FittedBox(
+                        child: Text(
+                          poemObject.findSomeone,
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -269,7 +313,14 @@ class PoemWidget extends StatelessWidget {
                     constraints: BoxConstraints(
                         minHeight: double.infinity, minWidth: double.infinity),
                     child: Center(
-                      child: Text('123'),
+                      child: FittedBox(
+                        child: Text(
+                          poemObject.money,
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -297,7 +348,14 @@ class PoemWidget extends StatelessWidget {
                     constraints: BoxConstraints(
                         minHeight: double.infinity, minWidth: double.infinity),
                     child: Center(
-                      child: Text('123'),
+                      child: FittedBox(
+                        child: Text(
+                          poemObject.travel,
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -331,7 +389,14 @@ class PoemWidget extends StatelessWidget {
                     constraints: BoxConstraints(
                         minHeight: double.infinity, minWidth: double.infinity),
                     child: Center(
-                      child: Text('123'),
+                      child: FittedBox(
+                        child: Text(
+                          poemObject.marriage,
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -359,7 +424,14 @@ class PoemWidget extends StatelessWidget {
                     constraints: BoxConstraints(
                         minHeight: double.infinity, minWidth: double.infinity),
                     child: Center(
-                      child: Text('123'),
+                      child: FittedBox(
+                        child: Text(
+                          poemObject.sick,
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -393,7 +465,14 @@ class PoemWidget extends StatelessWidget {
                     constraints: BoxConstraints(
                         minHeight: double.infinity, minWidth: double.infinity),
                     child: Center(
-                      child: Text('123'),
+                      child: FittedBox(
+                        child: Text(
+                          poemObject.family,
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -421,7 +500,14 @@ class PoemWidget extends StatelessWidget {
                     constraints: BoxConstraints(
                         minHeight: double.infinity, minWidth: double.infinity),
                     child: Center(
-                      child: Text('123'),
+                      child: FittedBox(
+                        child: Text(
+                          poemObject.fame,
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
