@@ -25,9 +25,9 @@ class MyApp extends StatelessWidget {
         '/latest': (BuildContext context) =>
             LatestNewsScaffold(title : "最新文章"),
         '/pray' : (BuildContext context) =>
-            PrayScaffold(),
+            PrayScaffold(title : "地藏占卜"),
         '/donate' : (BuildContext context) =>
-            DonateScaffold(),
+            DonateScaffold(title : "地藏供養"),
       },
       initialRoute: '/home',
 
