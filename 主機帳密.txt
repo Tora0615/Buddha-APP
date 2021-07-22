@@ -1,0 +1,9 @@
+MySQL資料庫
+網址 : http://211.72.207.204/mysql2 
+帳號 : vhost111776
+密碼 : 2018Jizo
+
+WebFTP 上傳帳號
+網址 : https://webftp.url.com.tw/?servername=lastbuddha.com.tw
+帳號 : lifeinliu@gmail.com
+帳號 : 2020Jizo
