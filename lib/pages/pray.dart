@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'others/prayData.dart';
 import 'dart:math';
+import 'package:folding_cell/folding_cell.dart';
 
 class SignPoemForm {
   var poemID; //ID
@@ -31,8 +32,9 @@ class SignPoemForm {
   //   required this.fame,
   //   required this.webLink,
   // });
-
-  SignPoemForm.formIndex(int index){
+  
+  // 命名的構造函數
+  SignPoemForm.formIndex(int index) {
     poemID = signPoem[index][0];
     poemChineseID = signPoem[index][1];
     signPoemArticle = signPoem[index][2];
@@ -48,14 +50,10 @@ class SignPoemForm {
   }
 }
 
-
-
-
 class PrayScaffold extends StatelessWidget {
   final title;
   final Random random = Random();
   PrayScaffold({Key? key, this.title}) : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {
@@ -74,14 +72,9 @@ class PrayScaffold extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              "功能開發中，敬請期待",
-              style: TextStyle(
-                fontSize: 20,
-              ),
-            ),
-            PoemWidget(
-              poemSize: poemSize,
+            // 摺疊籤詩，傳入完整高度的一半 & 籤詩 Index
+            FoldingPoem(
+              foldHeight: poemSize / 2, //摺疊高度是完整籤詩一半
               poemIndex: poemIndex,
             ),
           ],
@@ -91,14 +84,14 @@ class PrayScaffold extends StatelessWidget {
   }
 }
 
+// 籤詩內容，為正方形。需傳入籤詩邊長與籤詩的編號 index
 class PoemWidget extends StatelessWidget {
-
-  PoemWidget({Key? key, required this.poemSize, required this.poemIndex}) : super(key: key);
+  PoemWidget({Key? key, required this.poemSize, required this.poemIndex})
+      : super(key: key);
 
   final int poemIndex;
   final double poemSize;
   final Color poemColor = Colors.red;
-
 
   @override
   Widget build(BuildContext context) {
@@ -146,7 +139,7 @@ class PoemWidget extends StatelessWidget {
                         minHeight: double.infinity, minWidth: double.infinity),
                     child: Center(
                       child: Text(
-                        '第'+ poemObject.poemID.toString() +'籤',
+                        '第' + poemObject.poemID.toString() + '籤',
                         style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
@@ -187,12 +180,14 @@ class PoemWidget extends StatelessWidget {
                     color: Colors.white,
                     constraints: BoxConstraints(
                         minHeight: double.infinity, minWidth: double.infinity),
-                    padding: EdgeInsets.all(5),  //內部文字跟邊邊留距離
+                    padding: EdgeInsets.all(5), //內部文字跟邊邊留距離
                     child: Center(
                       child: FittedBox(
                         child: Row(
                           children: [
-                            SizedBox(width: 10,),
+                            SizedBox(
+                              width: 10,
+                            ),
                             Text(
                               poemObject.signPoemArticle,
                               style: TextStyle(
@@ -241,7 +236,7 @@ class PoemWidget extends StatelessWidget {
                         child: Text(
                           poemObject.job,
                           style: TextStyle(
-                              fontSize: 18,
+                            fontSize: 18,
                           ),
                         ),
                       ),
@@ -547,6 +542,95 @@ class PoemWidget extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+
+// 摺疊起來的籤詩 widget (含開啟功能)
+class FoldingPoem extends StatelessWidget {
+  final _foldingCellKey = GlobalKey<SimpleFoldingCellState>();
+
+  // 傳入參數
+  final foldHeight;
+  final poemIndex;
+  FoldingPoem({
+    Key? key,
+    required this.foldHeight,
+    required this.poemIndex,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.topCenter,
+      child: SimpleFoldingCell.create(
+        key: _foldingCellKey,
+        frontWidget: _buildFrontWidget(),
+        innerWidget: _buildInnerWidget(),
+        cellSize: Size(MediaQuery.of(context).size.width, foldHeight), //可改高度
+        padding: EdgeInsets.all(15),
+        animationDuration: Duration(milliseconds: 300),
+        borderRadius: 0,
+        //onOpen: () => print('cell opened'),
+        //onClose: () => print('cell closed'),
+      ),
+    );
+  }
+
+  // 摺疊時的樣子
+  Widget _buildFrontWidget() {
+    return Container(
+      color: Colors.red,
+      alignment: Alignment.center,
+      padding: EdgeInsets.all(3),
+      child: Container(
+        color: Colors.white,
+        constraints: BoxConstraints(
+          minWidth: double.infinity,
+          minHeight: double.infinity,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Text(
+              "地藏靈籤",
+              style: TextStyle(fontSize: 38, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              "您抽到第" + poemIndex.toString() + "號籤文",
+              style: TextStyle(
+                fontSize: 28,
+              ),
+            ),
+
+            // 開啟籤詩的按鈕
+            ElevatedButton(
+              onPressed: () {
+                _foldingCellKey.currentState?.toggleFold();
+              },
+              child: Text(
+                "打開籤文",
+                style: TextStyle(color: Colors.black),
+              ),
+              style: ElevatedButton.styleFrom(
+                elevation: 2,
+                primary: Colors.grey[300],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // 打開的畫面 (為原本高度的兩倍)
+  Widget _buildInnerWidget() {
+    // 利用傳入參數生成籤詩
+    return PoemWidget(
+      poemSize: foldHeight * 2,
+      poemIndex: poemIndex,
     );
   }
 }
