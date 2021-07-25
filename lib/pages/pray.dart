@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'others/prayData.dart';
 import 'dart:math';
 import 'package:folding_cell/folding_cell.dart';
+import 'commonWidget/CommonHeader.dart';
 
 class SignPoemForm {
   var poemID; //ID
@@ -32,7 +33,7 @@ class SignPoemForm {
   //   required this.fame,
   //   required this.webLink,
   // });
-  
+
   // 命名的構造函數
   SignPoemForm.formIndex(int index) {
     poemID = signPoem[index][0];
@@ -50,10 +51,138 @@ class SignPoemForm {
   }
 }
 
+// ignore: must_be_immutable
 class PrayScaffold extends StatelessWidget {
   final title;
-  final Random random = Random();
   PrayScaffold({Key? key, this.title}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              CommonHeader(
+                headerPicPath: "images/pray/bg_pray.jpg",
+              ),
+              PrayContext(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// 除了共用 header 外的內容
+class PrayContext extends StatefulWidget {
+  const PrayContext({Key? key}) : super(key: key);
+
+  @override
+  _PrayContextState createState() => _PrayContextState();
+}
+
+class _PrayContextState extends State<PrayContext> {
+  bool isAfterPray = false;
+
+  // 要傳入 WidgetBeforePray 用的 widget
+  changeBoolState() {
+    setState(() {
+      isAfterPray = !isAfterPray;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    //切換 widget 時，若大小有改變會順便有動畫過度
+    return AnimatedCrossFade(
+      duration: const Duration(milliseconds: 500),
+      firstChild: WidgetAfterPray(),
+      secondChild: WidgetBeforePray(changeBoolState: changeBoolState),
+      crossFadeState:
+          isAfterPray ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+    );
+  }
+}
+
+
+// 按下占卜按鈕前頁面，內容為介紹等等
+class WidgetBeforePray extends StatelessWidget {
+  final VoidCallback changeBoolState; //
+  const WidgetBeforePray({Key? key, required this.changeBoolState})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(20),
+      child: Column(
+        children: [
+          Text(
+            '地藏占卜',
+            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Text(
+            '        地藏占卜程式是以「地藏十輪經」為基礎，所開發出來的權巧應用。云云眾生身處無邊煩惱之五濁穢世，心神難免經常有所徬徨，對於茫茫前程不知如何進退。',
+            style: TextStyle(fontSize: 16),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Text(
+            '        此一程式藉由地藏菩薩無限威神力之助益，可以拈取迷者本身之身、口、意三業力之作用總合，給予即將應驗之果報的預警。',
+            style: TextStyle(fontSize: 16),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Text(
+            '        欲使用此程式占卜未來果報之迷者，應誠心默唸「地藏王菩薩」之名號十遍，祈求菩薩慈悲開示未來果報吉凶，並助迷者善因善緣相親，惡因惡緣速離 !!!',
+            style: TextStyle(fontSize: 16),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Text(
+            '誠心默念',
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          for (var i = 0; i < 10; i++)
+            Column(
+              children: [
+                Text(
+                  '南無地藏王菩薩',
+                  style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 10,),
+              ],
+            ),
+          ElevatedButton(
+            onPressed: changeBoolState,
+            child: Text('按此抽籤',style: TextStyle(color: Colors.black),),
+            style: ElevatedButton.styleFrom(
+              elevation: 2,
+              primary: Colors.amber,
+            ),
+          ),
+          SizedBox(height: 15,),
+        ],
+      ),
+    );
+  }
+}
+
+// 按下占卜按鈕後頁面，內容為折疊起來的籤詩
+class WidgetAfterPray extends StatelessWidget {
+  final Random random = Random();
+  WidgetAfterPray({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -61,25 +190,28 @@ class PrayScaffold extends StatelessWidget {
         MediaQuery.of(context).size.height > MediaQuery.of(context).size.width
             ? MediaQuery.of(context).size.width
             : MediaQuery.of(context).size.height;
-
     int poemIndex = random.nextInt(125);
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // 摺疊籤詩，傳入完整高度的一半 & 籤詩 Index
-            FoldingPoem(
-              foldHeight: poemSize / 2, //摺疊高度是完整籤詩一半
-              poemIndex: poemIndex,
-            ),
-          ],
+    return Column(
+      children: [
+        Center(
+          child: FoldingPoem(
+            foldHeight: poemSize / 2, //摺疊高度是完整籤詩一半
+            poemIndex: poemIndex,
+          ),
         ),
-      ),
+        SizedBox(height: 10,),
+        Center(
+          child: Container(
+            height: 144,
+            width: 144,
+            child: Image.asset(
+              "images/icons/icon-transparent.png",
+            ),
+          ),
+        ),
+        SizedBox(height: 15,),
+      ],
     );
   }
 }
@@ -546,7 +678,6 @@ class PoemWidget extends StatelessWidget {
   }
 }
 
-
 // 摺疊起來的籤詩 widget (含開啟功能)
 class FoldingPoem extends StatelessWidget {
   final _foldingCellKey = GlobalKey<SimpleFoldingCellState>();
@@ -599,7 +730,7 @@ class FoldingPoem extends StatelessWidget {
               style: TextStyle(fontSize: 38, fontWeight: FontWeight.bold),
             ),
             Text(
-              "您抽到第" + poemIndex.toString() + "號籤文",
+              "您抽到的是第" + (poemIndex + 1).toString() + "號籤文",
               style: TextStyle(
                 fontSize: 28,
               ),
