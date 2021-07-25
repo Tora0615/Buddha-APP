@@ -54,12 +54,13 @@ class CommonHeader extends StatelessWidget {
                     child: Container(
                       margin: EdgeInsets.fromLTRB(0, 0, 0.5, 1),
                       color: Colors.white,
-                      child: Container(
-                        margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                        child: Center(
-                          child: Text(
-                            '會員精舍',
-                            style: TextStyle(fontSize: 20),
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          '會員精舍',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
                           ),
                         ),
                       ),
@@ -69,12 +70,13 @@ class CommonHeader extends StatelessWidget {
                     child: Container(
                       margin: EdgeInsets.fromLTRB(0.5, 0, 0, 1),
                       color: Colors.white,
-                      child: Container(
-                        margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                        child: Center(
-                          child: Text(
-                            '地藏占卜',
-                            style: TextStyle(fontSize: 20),
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          '地藏占卜',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
                           ),
                         ),
                       ),
@@ -82,19 +84,19 @@ class CommonHeader extends StatelessWidget {
                   ),
                 ],
               ),
-
               Row(
                 children: [
                   Expanded(
                     child: Container(
                       margin: EdgeInsets.fromLTRB(0, 1, 0.5, 2),
                       color: Colors.white,
-                      child: Container(
-                        margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                        child: Center(
-                          child: Text(
-                            '修行指南',
-                            style: TextStyle(fontSize: 20),
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          '修行指南',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
                           ),
                         ),
                       ),
@@ -104,12 +106,16 @@ class CommonHeader extends StatelessWidget {
                     child: Container(
                       margin: EdgeInsets.fromLTRB(0.5, 1, 0, 2),
                       color: Colors.white,
-                      child: Container(
-                        margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                        child: Center(
-                          child: Text(
-                            '供養地藏',
-                            style: TextStyle(fontSize: 20),
+                      child: TextButton(
+                        onPressed: () {
+                          // Navigator.pop(context);
+                          // Navigator.pushNamed(context, '/donate');
+                        },
+                        child: Text(
+                          '供養地藏',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
                           ),
                         ),
                       ),

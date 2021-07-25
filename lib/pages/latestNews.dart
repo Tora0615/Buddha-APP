@@ -10,8 +10,10 @@ class LatestNewsScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       //appBar: CustomAppBar(),
-      body: SingleChildScrollView(
-        child: CommonHeader(headerPicPath: "images/pray/bg_pray.jpg",),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: CommonHeader(headerPicPath: "images/pray/bg_pray.jpg",),
+        ),
       ),
     );
   }
