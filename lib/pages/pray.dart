@@ -33,7 +33,7 @@ class SignPoemForm {
   //   required this.fame,
   //   required this.webLink,
   // });
-  
+
   // 命名的構造函數
   SignPoemForm.formIndex(int index) {
     poemID = signPoem[index][0];
@@ -51,10 +51,62 @@ class SignPoemForm {
   }
 }
 
-class PrayScaffold extends StatelessWidget {
+// ignore: must_be_immutable
+class PrayScaffold extends StatefulWidget {
   final title;
-  final Random random = Random();
+  // final Random random = Random();
   PrayScaffold({Key? key, this.title}) : super(key: key);
+
+  @override
+  _PrayScaffoldState createState() => _PrayScaffoldState();
+}
+
+class _PrayScaffoldState extends State<PrayScaffold> {
+  bool isAfterPray = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            isAfterPray = !isAfterPray;
+          });
+        },
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              CommonHeader(
+                headerPicPath: "images/pray/bg_pray.jpg",
+              ),
+              AnimatedSwitcher(
+                duration: Duration(milliseconds: 500),
+                child: isAfterPray ? WidgetAfterPray() : WidgetBeforePray(),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class WidgetBeforePray extends StatelessWidget {
+  const WidgetBeforePray({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Text('地藏占卜'),
+    );
+  }
+}
+
+class WidgetAfterPray extends StatelessWidget {
+  final Random random = Random();
+  WidgetAfterPray({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -62,31 +114,22 @@ class PrayScaffold extends StatelessWidget {
         MediaQuery.of(context).size.height > MediaQuery.of(context).size.width
             ? MediaQuery.of(context).size.width
             : MediaQuery.of(context).size.height;
-
     int poemIndex = random.nextInt(125);
 
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              CommonHeader(headerPicPath: "images/pray/bg_pray.jpg",),
-              Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    // 摺疊籤詩，傳入完整高度的一半 & 籤詩 Index
-                    FoldingPoem(
-                      foldHeight: poemSize / 2, //摺疊高度是完整籤詩一半
-                      poemIndex: poemIndex,
-                    ),
-                  ],
-                ),
-              ),
-            ],
+    return Column(
+      children: [
+        Center(
+          child: FoldingPoem(
+            foldHeight: poemSize / 2, //摺疊高度是完整籤詩一半
+            poemIndex: poemIndex,
           ),
         ),
-      ),
+        Center(
+          child: Image.asset(
+            "images/icons/jizo-icon-114x114.png",
+          ),
+        ),
+      ],
     );
   }
 }
@@ -552,7 +595,6 @@ class PoemWidget extends StatelessWidget {
     );
   }
 }
-
 
 // 摺疊起來的籤詩 widget (含開啟功能)
 class FoldingPoem extends StatelessWidget {
