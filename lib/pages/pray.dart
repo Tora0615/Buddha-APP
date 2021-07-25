@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'others/prayData.dart';
 import 'dart:math';
 import 'package:folding_cell/folding_cell.dart';
+import 'commonWidget/CommonHeader.dart';
 
 class SignPoemForm {
   var poemID; //ID
@@ -65,19 +66,25 @@ class PrayScaffold extends StatelessWidget {
     int poemIndex = random.nextInt(125);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // 摺疊籤詩，傳入完整高度的一半 & 籤詩 Index
-            FoldingPoem(
-              foldHeight: poemSize / 2, //摺疊高度是完整籤詩一半
-              poemIndex: poemIndex,
-            ),
-          ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              CommonHeader(headerPicPath: "images/pray/bg_pray.jpg",),
+              Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // 摺疊籤詩，傳入完整高度的一半 & 籤詩 Index
+                    FoldingPoem(
+                      foldHeight: poemSize / 2, //摺疊高度是完整籤詩一半
+                      poemIndex: poemIndex,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
