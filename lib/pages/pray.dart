@@ -171,7 +171,8 @@ class WidgetBeforePray extends StatelessWidget {
               elevation: 2,
               primary: Colors.amber,
             ),
-          )
+          ),
+          SizedBox(height: 15,),
         ],
       ),
     );
@@ -199,11 +200,17 @@ class WidgetAfterPray extends StatelessWidget {
             poemIndex: poemIndex,
           ),
         ),
+        SizedBox(height: 10,),
         Center(
-          child: Image.asset(
-            "images/icons/jizo-icon-114x114.png",
+          child: Container(
+            height: 144,
+            width: 144,
+            child: Image.asset(
+              "images/icons/icon-transparent.png",
+            ),
           ),
         ),
+        SizedBox(height: 15,),
       ],
     );
   }

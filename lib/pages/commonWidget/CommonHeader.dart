@@ -16,7 +16,7 @@ class CommonHeader extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                "images/icons/jizo-icon-114x114.png",
+                "images/icons/icon-transparent.png",
                 fit: BoxFit.fitHeight,
               ),
               SizedBox(
