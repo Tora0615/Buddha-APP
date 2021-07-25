@@ -52,28 +52,13 @@ class SignPoemForm {
 }
 
 // ignore: must_be_immutable
-class PrayScaffold extends StatefulWidget {
+class PrayScaffold extends StatelessWidget {
   final title;
-  // final Random random = Random();
   PrayScaffold({Key? key, this.title}) : super(key: key);
-
-  @override
-  _PrayScaffoldState createState() => _PrayScaffoldState();
-}
-
-class _PrayScaffoldState extends State<PrayScaffold> {
-  bool isAfterPray = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            isAfterPray = !isAfterPray;
-          });
-        },
-      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -81,10 +66,7 @@ class _PrayScaffoldState extends State<PrayScaffold> {
               CommonHeader(
                 headerPicPath: "images/pray/bg_pray.jpg",
               ),
-              AnimatedSwitcher(
-                duration: Duration(milliseconds: 500),
-                child: isAfterPray ? WidgetAfterPray() : WidgetBeforePray(),
-              )
+              PrayContext(),
             ],
           ),
         ),
@@ -93,13 +75,56 @@ class _PrayScaffoldState extends State<PrayScaffold> {
   }
 }
 
-class WidgetBeforePray extends StatelessWidget {
-  const WidgetBeforePray({Key? key}) : super(key: key);
+
+// 除了共用 header 外的內容
+class PrayContext extends StatefulWidget {
+  const PrayContext({Key? key}) : super(key: key);
+
+  @override
+  _PrayContextState createState() => _PrayContextState();
+}
+
+class _PrayContextState extends State<PrayContext> {
+  bool isAfterPray = false;
+
+  // 要傳入 WidgetBeforePray 用的 widget
+  changeBoolState() {
+    setState(() {
+      isAfterPray = !isAfterPray;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('地藏占卜'),
+    //切換 widget 時，若大小有改變會順便有動畫過度
+    return AnimatedCrossFade(
+        duration: const Duration(milliseconds: 500 ),
+        firstChild: WidgetAfterPray(),
+        secondChild: WidgetBeforePray(changeBoolState: changeBoolState),
+        crossFadeState: isAfterPray ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+    );
+  }
+}
+
+class WidgetBeforePray extends StatelessWidget {
+  final VoidCallback changeBoolState; //
+  const WidgetBeforePray({Key? key, required this.changeBoolState})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text('地藏占卜'),
+        Text(
+            '''        地藏占卜程式是以「地藏十輪經」為基礎，所開發出來的權巧應用。云云眾生身處無邊煩惱之五濁穢世，心神難免經常有所徬徨，對於茫茫前程不知如何進退。此一程式藉由地藏菩薩無限威神力之助益，可以拈取迷者本身之身、口、意三業力之作用總合，給予即將應驗之果報的預警。欲使用此程式占卜未來果報之迷者，應誠心默唸「地藏王菩薩」之名號十遍，祈求菩薩慈悲開示未來果報吉凶，並助迷者善因善緣相親，惡因惡緣速離 !!!'''),
+        Text('誠心默念'),
+        for (var i = 0; i < 10; i++) Text('南無地藏王菩薩'),
+        ElevatedButton(
+          onPressed: changeBoolState,
+          child: Text('按此抽籤'),
+        )
+      ],
     );
   }
 }
@@ -648,7 +673,7 @@ class FoldingPoem extends StatelessWidget {
               style: TextStyle(fontSize: 38, fontWeight: FontWeight.bold),
             ),
             Text(
-              "您抽到第" + poemIndex.toString() + "號籤文",
+              "您抽到第" + (poemIndex + 1).toString() + "號籤文",
               style: TextStyle(
                 fontSize: 28,
               ),
