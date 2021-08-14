@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'pages/pray/pray.dart';
-import 'pages/donate/donate.dart';
-import 'pages/latestNews/latestNews.dart';
 import 'pages/home/home.dart';
+import 'package:buddha_app/pages/home/commonWidgetWrapper.dart';
 
 
 void main() {
@@ -23,11 +21,11 @@ class MyApp extends StatelessWidget {
         '/home': (BuildContext context) =>
             HomeScaffold(),
         '/latest': (BuildContext context) =>
-            LatestNewsScaffold(title : "最新文章"),
+            CommonWidgetWrapper(index: 2,),
         '/pray' : (BuildContext context) =>
-            PrayScaffold(title : "地藏占卜"),
+            CommonWidgetWrapper(index: 1,),
         '/donate' : (BuildContext context) =>
-            DonateScaffold(title : "地藏供養"),
+            CommonWidgetWrapper(index: 3,),
       },
       initialRoute: '/home',
 

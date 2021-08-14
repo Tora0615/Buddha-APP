@@ -7,16 +7,11 @@ class DonateScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
-      body: Center(
-        child: Text(
-          "功能開發中，敬請期待",
-          style: TextStyle(
-            fontSize: 20,
-          ),
+    return Center(
+      child: Text(
+        "供養地藏：功能開發中，敬請期待",
+        style: TextStyle(
+          fontSize: 20,
         ),
       ),
     );

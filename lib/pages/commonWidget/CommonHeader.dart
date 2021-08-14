@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class CommonHeader extends StatelessWidget {
   final String headerPicPath;
-  const CommonHeader({Key? key, required this.headerPicPath}) : super(key: key);
+  final Function changeIndex;
+  const CommonHeader({Key? key, required this.headerPicPath,required this.changeIndex}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +72,9 @@ class CommonHeader extends StatelessWidget {
                       margin: EdgeInsets.fromLTRB(0.5, 0, 0, 1),
                       color: Colors.white,
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          changeIndex(1);
+                        },
                         child: Text(
                           '地藏占卜',
                           style: TextStyle(
@@ -91,7 +94,9 @@ class CommonHeader extends StatelessWidget {
                       margin: EdgeInsets.fromLTRB(0, 1, 0.5, 2),
                       color: Colors.white,
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          changeIndex(2);
+                        },
                         child: Text(
                           '修行指南',
                           style: TextStyle(
@@ -108,8 +113,7 @@ class CommonHeader extends StatelessWidget {
                       color: Colors.white,
                       child: TextButton(
                         onPressed: () {
-                          // Navigator.pop(context);
-                          // Navigator.pushNamed(context, '/donate');
+                          changeIndex(3);
                         },
                         child: Text(
                           '供養地藏',
