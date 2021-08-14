@@ -1,55 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'others/prayData.dart';
 import 'dart:math';
 import 'package:folding_cell/folding_cell.dart';
-import 'commonWidget/CommonHeader.dart';
-
-class SignPoemForm {
-  var poemID; //ID
-  var poemChineseID; //中文ID
-  var signPoemArticle; //籤詩文章
-  var job; //營生
-  var money; //求財
-  var marriage; //婚姻
-  var family; //家庭
-  var findSomeone; //尋人
-  var travel; //遠行
-  var sick; //治病
-  var fame; //功名
-  var webLink; //網站連結
-
-  // SignPoemForm({
-  //   required this.poemID,
-  //   required this.poemChineseID,
-  //   required this.signPoemArticle,
-  //   required this.job,
-  //   required this.money,
-  //   required this.marriage,
-  //   required this.family,
-  //   required this.findSomeone,
-  //   required this.travel,
-  //   required this.sick,
-  //   required this.fame,
-  //   required this.webLink,
-  // });
-
-  // 命名的構造函數
-  SignPoemForm.formIndex(int index) {
-    poemID = signPoem[index][0];
-    poemChineseID = signPoem[index][1];
-    signPoemArticle = signPoem[index][2];
-    job = signPoem[index][3];
-    money = signPoem[index][4];
-    marriage = signPoem[index][5];
-    family = signPoem[index][6];
-    findSomeone = signPoem[index][7];
-    travel = signPoem[index][8];
-    sick = signPoem[index][9];
-    fame = signPoem[index][10];
-    webLink = signPoem[index][11];
-  }
-}
+import '../commonWidget/CommonHeader.dart';
+import '../../models/SignPoemForm.dart';
 
 // ignore: must_be_immutable
 class PrayScaffold extends StatelessWidget {
