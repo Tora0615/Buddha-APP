@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'commonWidget/CommonHeader.dart';
+import '../commonWidget/CommonHeader.dart';
 
 class LatestNewsScaffold extends StatelessWidget {
   final title;

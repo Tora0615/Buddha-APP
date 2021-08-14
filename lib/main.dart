@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'pages/pray.dart';
-import 'pages/donate.dart';
-import 'pages/latestNews.dart';
-import 'pages/home.dart';
+import 'pages/pray/pray.dart';
+import 'pages/donate/donate.dart';
+import 'pages/latestNews/latestNews.dart';
+import 'pages/home/home.dart';
 
 
 void main() {

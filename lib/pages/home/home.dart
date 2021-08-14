@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
-import 'commonWidget/BlurryContainer.dart';
+import '../commonWidget/BlurryContainer.dart';
 
 class HomeScaffold extends StatelessWidget {
   static TextStyle myTextStyleSetting = TextStyle(
