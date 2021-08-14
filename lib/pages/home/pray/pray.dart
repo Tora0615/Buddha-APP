@@ -2,8 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:folding_cell/folding_cell.dart';
-import '../commonWidget/CommonHeader.dart';
-import '../../models/SignPoemForm.dart';
+import '../../../models/SignPoemForm.dart';
 
 // ignore: must_be_immutable
 class PrayScaffold extends StatelessWidget {
@@ -12,20 +11,7 @@ class PrayScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              CommonHeader(
-                headerPicPath: "images/pray/bg_pray.jpg",
-              ),
-              PrayContext(),
-            ],
-          ),
-        ),
-      ),
-    );
+    return PrayContext();
   }
 }
 
