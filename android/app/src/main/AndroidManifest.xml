@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.buddha_app">
    <application
-        android:label="南無地藏菩薩"
+        android:label="地藏靈籤"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
