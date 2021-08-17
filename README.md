@@ -13,4 +13,4 @@ An APP of  Buddhism for Spread Buddhist knowledge.
 [Pass method as parameter to a widget](https://stackoverflow.com/questions/54493002/pass-method-as-parameter-to-a-widget)
 
 ## TODO
-啟動logo要換高畫質的
+[V] 啟動logo要換高畫質的
