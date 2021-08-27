@@ -38,6 +38,7 @@ class _CommonWidgetWrapperState extends State<CommonWidgetWrapper> {
         break;
       case 3:
         widgetByIndex = DonateScaffold();
+        break;
     }
 
     return Scaffold(
