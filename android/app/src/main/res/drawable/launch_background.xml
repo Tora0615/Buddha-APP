@@ -8,6 +8,6 @@
         <bitmap
             android:gravity="center"
             android:mipMap="true"
-            android:src="@drawable/launch" />
+            android:src="@drawable/launch" /> <!--啟動頁ICON (印象中是)-->
     </item>
 </layer-list>
