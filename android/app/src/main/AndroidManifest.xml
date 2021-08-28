@@ -3,6 +3,8 @@
    <application
         android:label="地藏靈籤"
         android:icon="@mipmap/ic_launcher">
+       <!-- label 是 APP 名稱-->
+       <!-- @mipmap/ic_launcher 是各個mipmap資料夾下，icon 圖片的名字(每個都相同)-->
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

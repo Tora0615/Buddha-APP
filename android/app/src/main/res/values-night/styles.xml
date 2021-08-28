@@ -19,6 +19,7 @@
 <!--    </style>-->
 <!--</resources>-->
 
+<!--上面是黑暗模式的，把啟動頁白天白色的背景code移過來-->
 <!--change night background to white-->
 <resources>
     <!-- Theme applied to the Android Window while the process is starting when the OS's Dark Mode setting is off -->
