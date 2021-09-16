@@ -12,6 +12,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      builder: (context, child) {
+        final mediaQueryData = MediaQuery.of(context);
+        final scale = mediaQueryData.textScaleFactor.clamp(1.0, 1.3);  // 兩種縮放倍率
+        return MediaQuery(
+          child: child!,  //特殊用法，看 readme
+          data: MediaQuery.of(context).copyWith(textScaleFactor: scale), //限制文字大小縮放倍率，有scale兩種
+        );
+      },
       title: '地藏靈籤',
       theme: ThemeData(
         primarySwatch: Colors.blue,

@@ -165,6 +165,8 @@ class PoemWidget extends StatelessWidget {
   final double poemSize;
   final Color poemColor = Colors.red;
 
+  final stableFontSize = 24.0;
+
   @override
   Widget build(BuildContext context) {
     SignPoemForm poemObject = SignPoemForm.formIndex(poemIndex);
@@ -196,7 +198,7 @@ class PoemWidget extends StatelessWidget {
                       child: Text(
                         '地藏靈籤',
                         style: TextStyle(
-                          fontSize: 22,
+                          fontSize: stableFontSize,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -213,7 +215,7 @@ class PoemWidget extends StatelessWidget {
                       child: Text(
                         '第' + poemObject.poemID.toString() + '籤',
                         style: TextStyle(
-                          fontSize: 22,
+                          fontSize: stableFontSize,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -238,7 +240,7 @@ class PoemWidget extends StatelessWidget {
                       child: Text(
                         '籤詩',
                         style: TextStyle(
-                            fontSize: 20,
+                            fontSize: stableFontSize-2,
                             fontWeight: FontWeight.bold,
                             color: Colors.red),
                       ),
@@ -290,7 +292,7 @@ class PoemWidget extends StatelessWidget {
                       child: Text(
                         '營生',
                         style: TextStyle(
-                            fontSize: 18,
+                            fontSize: stableFontSize-2,
                             fontWeight: FontWeight.bold,
                             color: Colors.red),
                       ),
@@ -325,7 +327,7 @@ class PoemWidget extends StatelessWidget {
                       child: Text(
                         '尋人',
                         style: TextStyle(
-                            fontSize: 18,
+                            fontSize: stableFontSize-2,
                             fontWeight: FontWeight.bold,
                             color: Colors.red),
                       ),
@@ -366,7 +368,7 @@ class PoemWidget extends StatelessWidget {
                       child: Text(
                         '求財',
                         style: TextStyle(
-                            fontSize: 18,
+                            fontSize: stableFontSize-2,
                             fontWeight: FontWeight.bold,
                             color: Colors.red),
                       ),
@@ -401,7 +403,7 @@ class PoemWidget extends StatelessWidget {
                       child: Text(
                         '遠行',
                         style: TextStyle(
-                            fontSize: 18,
+                            fontSize: stableFontSize-2,
                             fontWeight: FontWeight.bold,
                             color: Colors.red),
                       ),
@@ -442,7 +444,7 @@ class PoemWidget extends StatelessWidget {
                       child: Text(
                         '婚姻',
                         style: TextStyle(
-                            fontSize: 18,
+                            fontSize: stableFontSize-2,
                             fontWeight: FontWeight.bold,
                             color: Colors.red),
                       ),
@@ -477,7 +479,7 @@ class PoemWidget extends StatelessWidget {
                       child: Text(
                         '治病',
                         style: TextStyle(
-                            fontSize: 18,
+                            fontSize: stableFontSize-2,
                             fontWeight: FontWeight.bold,
                             color: Colors.red),
                       ),
@@ -518,7 +520,7 @@ class PoemWidget extends StatelessWidget {
                       child: Text(
                         '家事',
                         style: TextStyle(
-                            fontSize: 18,
+                            fontSize: stableFontSize-2,
                             fontWeight: FontWeight.bold,
                             color: Colors.red),
                       ),
@@ -553,7 +555,7 @@ class PoemWidget extends StatelessWidget {
                       child: Text(
                         '功名',
                         style: TextStyle(
-                            fontSize: 18,
+                            fontSize: stableFontSize-2,
                             fontWeight: FontWeight.bold,
                             color: Colors.red),
                       ),
@@ -568,10 +570,13 @@ class PoemWidget extends StatelessWidget {
                         minHeight: double.infinity, minWidth: double.infinity),
                     child: Center(
                       child: FittedBox(
-                        child: Text(
-                          poemObject.fame,
-                          style: TextStyle(
-                            fontSize: 18,
+                        child: FittedBox(
+                          fit: BoxFit.fitWidth,
+                          child: Text(
+                            poemObject.fame,
+                            style: TextStyle(
+                              fontSize: 18,
+                            ),
                           ),
                         ),
                       ),
@@ -598,12 +603,15 @@ class PoemWidget extends StatelessWidget {
                           minimumSize: Size(double.infinity, double.infinity),
                         ),
                         onPressed: () {},
-                        child: Text(
-                          '去看詩籤源由',
-                          style: TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black),
+                        child: FittedBox(
+                          fit: BoxFit.contain,
+                          child: Text(
+                            '去看詩籤源由',
+                            style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
+                          ),
                         ),
                       ),
                     ),
