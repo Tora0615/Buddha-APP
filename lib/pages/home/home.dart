@@ -10,6 +10,8 @@ class HomeScaffold extends StatelessWidget {
     letterSpacing: 1,
   );
 
+  final paddingValue = 4.0;
+
 
   @override
   Widget build(BuildContext context) {
@@ -32,69 +34,75 @@ class HomeScaffold extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   BlurryContainer(
-                    padding: EdgeInsets.all(0),
+                    padding: EdgeInsets.all(paddingValue),
                     borderRadius: BorderRadius.circular(10),
                     bgColor: Colors.white,
                     height: 80,
                     width: 150,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "User001",
-                          style:TextStyle(
-                            fontSize: 27,
-                            color: Colors.indigoAccent,
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: 1,
+                    child: FittedBox(
+                      fit: BoxFit.contain,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "User001",
+                            style:TextStyle(
+                              fontSize: 27,
+                              color: Colors.indigoAccent,
+                              fontWeight: FontWeight.w500,
+                              letterSpacing: 1,
+                            ),
                           ),
-                        ),
-                        Text(
-                          "初發心菩薩",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.indigoAccent,
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: 1,
+                          Text(
+                            "初發心菩薩",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.indigoAccent,
+                              fontWeight: FontWeight.w500,
+                              letterSpacing: 1,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                   SizedBox(height: 10),
                   BlurryContainer(
-                    padding: EdgeInsets.all(0),
+                    padding: EdgeInsets.all(paddingValue),
                     borderRadius: BorderRadius.circular(10),
                     bgColor: Colors.white,
                     height: 80,
                     width: 150,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "功德幣餘額",
-                          style: TextStyle(
-                            fontSize: 25,
-                            color: Colors.indigoAccent,
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: 1,
+                    child: FittedBox(
+                      fit: BoxFit.contain,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "功德幣餘額",
+                            style: TextStyle(
+                              fontSize: 25,
+                              color: Colors.indigoAccent,
+                              fontWeight: FontWeight.w500,
+                              letterSpacing: 1,
+                            ),
                           ),
-                        ),
-                        Text(
-                          "＄9999",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.indigoAccent,
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: 1,
+                          Text(
+                            "＄9999",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.indigoAccent,
+                              fontWeight: FontWeight.w500,
+                              letterSpacing: 1,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                   SizedBox(height: 10),
                   BlurryContainer(
-                    padding: EdgeInsets.all(0),
+                    padding: EdgeInsets.all(paddingValue),
                     borderRadius: BorderRadius.circular(10),
                     bgColor: Colors.white,
                     height: 80,
@@ -103,43 +111,52 @@ class HomeScaffold extends StatelessWidget {
                       onPressed: () {
                         Navigator.pushNamed(context, '/pray');
                       },
-                      child: Text(
-                        "地藏占卜",
-                        style: myTextStyleSetting,
+                      child: FittedBox(
+                        fit: BoxFit.contain,
+                        child: Text(
+                          "地藏占卜",
+                          style: myTextStyleSetting,
+                        ),
                       ),
                     ),
                   ),
                   SizedBox(height: 10),
                   BlurryContainer(
-                    padding: EdgeInsets.all(0),
+                    padding: EdgeInsets.all(paddingValue),
                     borderRadius: BorderRadius.circular(10),
                     bgColor: Colors.white,
                     height: 80,
                     width: 150,
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/latest');
-                      },
-                      child: Text(
-                        "最新文章",
-                        style: myTextStyleSetting,
+                    child: FittedBox(
+                      fit: BoxFit.contain,
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/latest');
+                        },
+                        child: Text(
+                          "最新文章",
+                          style: myTextStyleSetting,
+                        ),
                       ),
                     ),
                   ),
                   SizedBox(height: 10),
                   BlurryContainer(
-                    padding: EdgeInsets.all(0),
+                    padding: EdgeInsets.all(paddingValue),
                     borderRadius: BorderRadius.circular(10),
                     bgColor: Colors.white,
                     height: 80,
                     width: 150,
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/donate');
-                      },
-                      child: Text(
-                        "地藏供養",
-                        style: myTextStyleSetting,
+                    child: FittedBox(
+                      fit: BoxFit.contain,
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/donate');
+                        },
+                        child: Text(
+                          "地藏供養",
+                          style: myTextStyleSetting,
+                        ),
                       ),
                     ),
                   ),
