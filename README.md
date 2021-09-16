@@ -24,6 +24,16 @@ An APP of  Buddhism for Spread Buddhist knowledge.
 ### Can't use MediaQuery with the builder parameter of MaterialApp in flutter's new versions
 [Link](https://stackoverflow.com/questions/67751639/cant-use-mediaquery-with-the-builder-parameter-of-materialapp-in-flutters-new)
 
+### 上架 PlayStore 錯誤 : 版本代碼 1 已經使用過了,請使用其他版本代碼。
+解決 : pubspec.yaml 的 version 後面要加上加號跟數字，如 0.1.3+2 
+說明 : 
+* 'XYZ+n' 這裡的 'xyz' 代表版本名稱，'n'代表版本編號 
+    * 版本名稱是給人看的 (versionName)
+    * 版本編號是給 PlayStore 辨識用，每次更新記得加 1 (versionCode)
+參考資料 : 
+[Flutter: upgrade the version code for play store](https://stackoverflow.com/questions/53570575/flutter-upgrade-the-version-code-for-play-store)
+[自動產生 VersionCode 與 VersionName](https://louis383.medium.com/%E8%87%AA%E5%8B%95%E7%94%A2%E7%94%9F-versioncode-%E8%88%87-versionname-cb6039152b1f)
+
 ## TODO
 [V] 啟動logo要換高畫質的
 
