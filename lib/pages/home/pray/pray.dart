@@ -669,36 +669,40 @@ class FoldingPoem extends StatelessWidget {
           minWidth: double.infinity,
           minHeight: double.infinity,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Text(
-              "地藏靈籤",
-              style: TextStyle(fontSize: 38, fontWeight: FontWeight.bold),
-            ),
-            Text(
-              "您抽到的是第" + (poemIndex + 1).toString() + "號籤文",
-              style: TextStyle(
-                fontSize: 28,
+        padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+        child: FittedBox(
+          fit: BoxFit.contain,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text(
+                "地藏靈籤",
+                style: TextStyle(fontSize: 38, fontWeight: FontWeight.bold),
               ),
-            ),
-
-            // 開啟籤詩的按鈕
-            ElevatedButton(
-              onPressed: () {
-                _foldingCellKey.currentState?.toggleFold();
-              },
-              child: Text(
-                "打開籤文",
-                style: TextStyle(color: Colors.black),
+              Text(
+                "您抽到的是第" + (poemIndex + 1).toString() + "號籤文",
+                style: TextStyle(
+                  fontSize: 28,
+                ),
               ),
-              style: ElevatedButton.styleFrom(
-                elevation: 2,
-                primary: Colors.grey[300],
+              SizedBox(height: 10,),
+              // 開啟籤詩的按鈕
+              ElevatedButton(
+                onPressed: () {
+                  _foldingCellKey.currentState?.toggleFold();
+                },
+                child: Text(
+                  "打開籤文",
+                  style: TextStyle(color: Colors.black,fontSize: 16),
+                ),
+                style: ElevatedButton.styleFrom(
+                  elevation: 2,
+                  primary: Colors.grey[300],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
