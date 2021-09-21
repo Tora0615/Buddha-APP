@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import '../commonWidget/CommonHeader.dart';
-import 'pray/pray.dart';
-import 'latestNews/latestNews.dart';
-import 'donate/donate.dart';
+import '../pages/home/pray/pray.dart';
+import '../pages/home/latestNews/latestNews.dart';
+import '../pages/home/donate/donate.dart';
+import 'commonHeaderWithTabButton.dart';
 
+// 2021/09/21 已棄用，一個月後刪除
 class CommonWidgetWrapper extends StatefulWidget {
   final index;
   const CommonWidgetWrapper({Key? key,this.index}) : super(key: key);
@@ -46,7 +47,7 @@ class _CommonWidgetWrapperState extends State<CommonWidgetWrapper> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              CommonHeader(
+              CommonHeaderWithTabButton(
                 headerPicPath: "images/pray/bg_pray.jpg",
                 changeIndex: setIndex,
               ),
