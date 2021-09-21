@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:folding_cell/folding_cell.dart';
 import '../../../models/SignPoemForm.dart';
+import '../../commonWidget/CommonHeader.dart';
 
 // ignore: must_be_immutable
 class PrayScaffold extends StatelessWidget {
@@ -36,12 +36,19 @@ class _PrayContextState extends State<PrayContext> {
   @override
   Widget build(BuildContext context) {
     //切換 widget 時，若大小有改變會順便有動畫過度
-    return AnimatedCrossFade(
-      duration: const Duration(milliseconds: 500),
-      firstChild: WidgetAfterPray(),
-      secondChild: WidgetBeforePray(changeBoolState: changeBoolState),
-      crossFadeState:
-          isAfterPray ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          CommonHeader(headerPicPath: "images/pray/bg_pray.jpg",),
+          AnimatedCrossFade(
+            duration: const Duration(milliseconds: 500),
+            firstChild: WidgetAfterPray(),
+            secondChild: WidgetBeforePray(changeBoolState: changeBoolState),
+            crossFadeState:
+                isAfterPray ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+          ),
+        ],
+      ),
     );
   }
 }
