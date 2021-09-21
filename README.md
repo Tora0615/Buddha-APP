@@ -43,6 +43,23 @@ class _BottomNavigatorState extends State<BottomNavigator> {
 ```
 [參考連結](https://stackoverflow.com/questions/64092241/the-instance-member-widget-cant-be-accessed-in-an-initializer?rq=1)
 
+### Playstore error: App Bundle contains native code, and you've not uploaded debug symbols
+解決方式
+
+到 [YOUR_PROJECT]\build\app\intermediates\merged_native_libs\release\out\lib 目錄下
+有 3 個資料夾 : 
+    * arm64-v8a
+    * armeabi-v7a
+    * x86_64
+壓縮這三個資料夾成一個 ZIP 檔案作為符號文件，並在上傳完 aab 檔案後同時上傳此壓縮檔。
+[參考連結](https://stackoverflow.com/questions/62568757/playstore-error-app-bundle-contains-native-code-and-youve-not-uploaded-debug)
+
+
+### 每次上傳前要做的事情
+1. 更新版本代碼
+2. 壓縮符號文件並上傳
+
+
 ## TODO
 [V] 啟動logo要換高畫質的
 
