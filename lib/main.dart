@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'pages/home/home.dart';
-import 'package:buddha_app/pages/home/commonWidgetWrapper.dart';
-
+import 'package:buddha_app/deprecated/commonWidgetWrapper.dart';
+import 'package:buddha_app/pages/home/bottomNavigator.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,15 +25,25 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
 
+      // routes: {
+      //   '/home': (BuildContext context) =>
+      //       HomeScaffold(),
+      //   '/latest': (BuildContext context) =>
+      //       CommonWidgetWrapper(index: 2,),
+      //   '/pray' : (BuildContext context) =>
+      //       CommonWidgetWrapper(index: 1,),
+      //   '/donate' : (BuildContext context) =>
+      //       CommonWidgetWrapper(index: 3,),
+      // },
       routes: {
         '/home': (BuildContext context) =>
             HomeScaffold(),
-        '/latest': (BuildContext context) =>
-            CommonWidgetWrapper(index: 2,),
         '/pray' : (BuildContext context) =>
-            CommonWidgetWrapper(index: 1,),
+            BottomNavigator(index: 1,),
+        '/latest': (BuildContext context) =>
+            BottomNavigator(index: 2,),
         '/donate' : (BuildContext context) =>
-            CommonWidgetWrapper(index: 3,),
+            BottomNavigator(index: 3,),
       },
       initialRoute: '/home',
       debugShowCheckedModeBanner: false,

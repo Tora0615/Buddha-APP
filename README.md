@@ -34,16 +34,55 @@ An APP of  Buddhism for Spread Buddhist knowledge.
 [Flutter: upgrade the version code for play store](https://stackoverflow.com/questions/53570575/flutter-upgrade-the-version-code-for-play-store)
 [自動產生 VersionCode 與 VersionName](https://louis383.medium.com/%E8%87%AA%E5%8B%95%E7%94%A2%E7%94%9F-versioncode-%E8%88%87-versionname-cb6039152b1f)
 
+### 解決在 StatefulWidget 中，state 區塊中非 build 之下，用 widget.$VAR 取用傳入 statefulWidget 建構子的值，出現 The instance member 'widget' can't be accessed in an initializer.
+變數前加上 late 即可。
+```dart
+class _BottomNavigatorState extends State<BottomNavigator> {
+  late int _currentIndex = widget.index; //重要
+}
+```
+[參考連結](https://stackoverflow.com/questions/64092241/the-instance-member-widget-cant-be-accessed-in-an-initializer?rq=1)
+
+### Playstore error: App Bundle contains native code, and you've not uploaded debug symbols
+解決方式
+
+到 [YOUR_PROJECT]\build\app\intermediates\merged_native_libs\release\out\lib 目錄下
+有 3 個資料夾 : 
+    * arm64-v8a
+    * armeabi-v7a
+    * x86_64
+壓縮這三個資料夾成一個 ZIP 檔案作為符號文件，並在上傳完 aab 檔案後同時上傳此壓縮檔。
+[參考連結](https://stackoverflow.com/questions/62568757/playstore-error-app-bundle-contains-native-code-and-youve-not-uploaded-debug)
+
+
+### 每次上傳前要做的事情
+1. 更新版本代碼
+2. 壓縮符號文件並上傳
+
+
 ## TODO
 [V] 啟動logo要換高畫質的
 
 
 ## 程式架構
-* common widget wrapper (共用頁面)
-    * pray scaffold (pray)
-        * PrayContext
-            * WidgetBeforePray (抽籤前介紹頁面)
-            * WidgetAfterPray
-                * FoldingPoem
-                    * _buildFrontWidget (摺起來的簽)
-                    * _buildInnerWidget (內部資料)
+* main
+    * wrapper (帳密相關尚未實作)
+        * home
+            * bottomNavigator (共用頁面)
+                * pray scaffold (pray)
+                    * CommonHeader
+                    * PrayContext
+                        * WidgetBeforePray (抽籤前介紹頁面)
+                        * WidgetAfterPray
+                            * FoldingPoem
+                                * _buildFrontWidget (摺起來的簽)
+                                * _buildInnerWidget (內部資料)
+                * latestNewsScaffold
+                    * CommonHeader
+                    * body
+                * donateScaffold
+                    * CommonHeader
+                    * body
+                * tempScaffold
+                    * CommonHeader
+                    * body
