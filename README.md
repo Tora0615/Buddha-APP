@@ -1,30 +1,47 @@
 # Buddha-APP
-An APP of  Buddhism for Spread Buddhist knowledge.
+An APP of  Buddhism for Spread Buddhist knowledge. 
+
+Screen Shots
+<p float="left">
+<img src= "demoPic/1.png"  width="18%">
+<img src= "demoPic/2.png"  width="18%">
+<img src= "demoPic/3.png"  width="18%">
+<img src= "demoPic/4.png"  width="18%">
+<img src= "demoPic/5.png"  width="18%">
+</p>
 
 ## 一些學習資源紀錄
-[Flutter 修改应用名称、图标、启动页](https://blog.csdn.net/yechaoa/article/details/98958344)
+1. [Flutter 修改应用名称、图标、启动页](https://blog.csdn.net/yechaoa/article/details/98958344)
 教學待寫
 
-[Git Commit Message 這樣寫會更好，替專案引入規範與範例](https://wadehuanglearning.blogspot.com/2019/05/commit-commit-commit-why-what-commit.html)
+2. [Git Commit Message 這樣寫會更好，替專案引入規範與範例](https://wadehuanglearning.blogspot.com/2019/05/commit-commit-commit-why-what-commit.html)
+
+3. Git永久删除文件(包括历史记录)
+
+    ```bash
+    git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch path-to-your-remove-file' --prune-empty --tag-name-filter cat -- --all
+    ```
+
+    link : https://gist.github.com/3b295/ac01498cfdc76c732e473c3756ed6bb2
 
 ## 一些踩雷紀錄
-### 修改啟動頁面Logo的時候，若drawable資料夾有好幾個，就都要改。因為會有數個不同的相容性版本使用 [Link](https://stackoverflow.com/questions/47093515/drawable-v21-v24-what-is-it)
+### 1. 修改啟動頁面Logo的時候，若drawable資料夾有好幾個，就都要改。因為會有數個不同的相容性版本使用 [Link](https://stackoverflow.com/questions/47093515/drawable-v21-v24-what-is-it)
 ![](app_unused_files/catched_bug01.jpg)
 
-### 啟動頁白天黑夜模式顏色更改
+### 2. 啟動頁白天黑夜模式顏色更改
 
-### 函式作為參數傳入widget
+### 3. 函式作為參數傳入widget
 要設定為 final VoidCallback changeBoolState; 再傳入跟呼叫
 [Pass method as parameter to a widget](https://stackoverflow.com/questions/54493002/pass-method-as-parameter-to-a-widget)
 
-### 系統字體影響 APP 文字大小 - 解決方法:
+### 4. 系統字體影響 APP 文字大小 - 解決方法:
 [How to make Flutter app font size independent from device settings?](https://stackoverflow.com/questions/59143443/how-to-make-flutter-app-font-size-independent-from-device-settings)
 
 
-### Can't use MediaQuery with the builder parameter of MaterialApp in flutter's new versions
+### 5. Can't use MediaQuery with the builder parameter of MaterialApp in flutter's new versions
 [Link](https://stackoverflow.com/questions/67751639/cant-use-mediaquery-with-the-builder-parameter-of-materialapp-in-flutters-new)
 
-### 上架 PlayStore 錯誤 : 版本代碼 1 已經使用過了,請使用其他版本代碼。
+### 6. 上架 PlayStore 錯誤 : 版本代碼 1 已經使用過了,請使用其他版本代碼。
 解決 : pubspec.yaml 的 version 後面要加上加號跟數字，如 0.1.3+2 
 說明 : 
 * 'XYZ+n' 這裡的 'xyz' 代表版本名稱，'n'代表版本編號 
@@ -34,7 +51,7 @@ An APP of  Buddhism for Spread Buddhist knowledge.
 [Flutter: upgrade the version code for play store](https://stackoverflow.com/questions/53570575/flutter-upgrade-the-version-code-for-play-store)
 [自動產生 VersionCode 與 VersionName](https://louis383.medium.com/%E8%87%AA%E5%8B%95%E7%94%A2%E7%94%9F-versioncode-%E8%88%87-versionname-cb6039152b1f)
 
-### 解決在 StatefulWidget 中，state 區塊中非 build 之下，用 widget.$VAR 取用傳入 statefulWidget 建構子的值，出現 The instance member 'widget' can't be accessed in an initializer.
+### 7. 解決在 StatefulWidget 中，state 區塊中非 build 之下，用 widget.$VAR 取用傳入 statefulWidget 建構子的值，出現 The instance member 'widget' can't be accessed in an initializer.
 變數前加上 late 即可。
 ```dart
 class _BottomNavigatorState extends State<BottomNavigator> {
@@ -43,8 +60,8 @@ class _BottomNavigatorState extends State<BottomNavigator> {
 ```
 [參考連結](https://stackoverflow.com/questions/64092241/the-instance-member-widget-cant-be-accessed-in-an-initializer?rq=1)
 
-### Playstore error: App Bundle contains native code, and you've not uploaded debug symbols
-解決方式
+### 8. Playstore error: App Bundle contains native code, and you've not uploaded debug symbols
+解決方式 : 
 
 到 [YOUR_PROJECT]\build\app\intermediates\merged_native_libs\release\out\lib 目錄下
 有 3 個資料夾 : 
@@ -55,7 +72,7 @@ class _BottomNavigatorState extends State<BottomNavigator> {
 [參考連結](https://stackoverflow.com/questions/62568757/playstore-error-app-bundle-contains-native-code-and-youve-not-uploaded-debug)
 
 
-### 每次上傳前要做的事情
+### 9. 每次上傳前要做的事情
 1. 更新版本代碼
 2. 壓縮符號文件並上傳
 
