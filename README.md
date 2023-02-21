@@ -22,7 +22,10 @@ Screen Shots
     git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch path-to-your-remove-file' --prune-empty --tag-name-filter cat -- --all
     ```
 
-    link : https://gist.github.com/3b295/ac01498cfdc76c732e473c3756ed6bb2
+    link : 
+    
+    https://gist.github.com/3b295/ac01498cfdc76c732e473c3756ed6bb2
+    https://www.cnblogs.com/shines77/p/3460274.html
 
 ## 一些踩雷紀錄
 ### 1. 修改啟動頁面Logo的時候，若drawable資料夾有好幾個，就都要改。因為會有數個不同的相容性版本使用 [Link](https://stackoverflow.com/questions/47093515/drawable-v21-v24-what-is-it)
