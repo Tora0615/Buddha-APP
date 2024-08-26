@@ -94,6 +94,10 @@ class _BottomNavigatorState extends State<BottomNavigator> {
 ## TODO
 [V] 啟動logo要換高畫質的
 
+## 隱私權文件
+[教學 : 產生 App 上架需要的隱私權政策 URL](https://medium.com/%E5%BD%BC%E5%BE%97%E6%BD%98%E7%9A%84-swift-ios-app-%E9%96%8B%E7%99%BC%E5%95%8F%E9%A1%8C%E8%A7%A3%E7%AD%94%E9%9B%86/%E7%94%A2%E7%94%9F-app-%E4%B8%8A%E6%9E%B6%E9%9C%80%E8%A6%81%E7%9A%84%E9%9A%B1%E7%A7%81%E6%AC%8A%E6%94%BF%E7%AD%96-url-7bc4746cf75d)
+[隱私權政策產生器1-privacyPolicies](https://app.privacypolicies.com/)
+[隱私權政策產生器2](https://app-privacy-policy-generator.firebaseapp.com/)
 
 ## 程式架構
 * main
